@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @day_log.day %>
+</p>
+
+<p>
+  <strong>Time in:</strong>
+  <%= @day_log.time_in %>
+</p>
+
+<p>
+  <strong>Time out:</strong>
+  <%= @day_log.time_out %>
+</p>
+
+<%= link_to 'Edit', edit_day_log_path(@day_log) %> |
+<%= link_to 'Back', day_logs_path %>

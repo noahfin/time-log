@@ -1,0 +1,103 @@
+<div class="container">
+<h1>New Day Log</h1>
+
+<%= form_for(@day_log) do |f| %>
+  <% if @day_log.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@day_log.errors.count, "error") %> prohibited this day_log from being saved:</h2>
+
+      <ul>
+      <% @day_log.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :day %><br>
+   <div class="col-sm-6 form-group">
+            <label for="dd" class="sr-only">Time Pick</label>
+            <div class="input-group" id="DateDemo">
+                <input type="text" id="dd" name="day" data-format="MM/DD/YYYY" placeholder="date"  class="form-control"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-green"  id="date-btn"type="button"><i class="glyphicon glyphicon-calendar	"></i></button>
+                </span>
+            </div>
+        </div>
+  </div>
+  <div class="field">
+    <%= f.label :time_in %><br>
+ <div class="col-sm-6 form-group">
+            <label for="tt" class="sr-only">Start Timer</label>
+            <div class="input-group" id="TimeDemo">
+                <input type="text" id="tt" name="time_in" placeholder="time" class="form-control" />
+                <span class="input-group-btn">
+                    <button class="btn btn-green" type="button"><i class="glyphicon glyphicon-time	Try it
+"></i></button>
+                </span>
+            </div>
+  </div>
+  
+  <div class="field">
+    <%= f.label :time_out %><br>
+
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker3'>
+                    <input type="text" id="tt" name="time_out" placeholder="time"  class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+            });
+        </script>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', day_logs_path %>
+
+</div>
+
+        <script type="text/javascript">
+           
+                           $(function () {
+
+
+               
+               
+
+                $('#datetimepicker3').datetimepicker({
+                    format: 'LT'
+                });
+                $( "#dd" ).change(function() {
+                  alert( "The date is selected." );
+                });
+                $( "#tt" ).change(function() {
+                  alert( "The starttime is selected." );
+                });
+                $( "#time-out" ).change(function() {
+                  alert( "The end time is selected." );
+                });
+
+                 console.log('The date is');
+                 console.log($('#dd'));
+                 console.log('The start time is');
+                 console.log($('#dd'));
+                 console.log('The end time is');
+                 console.log($('#dd'));
+
+
+            });
+        </script>
