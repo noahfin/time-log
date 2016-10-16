@@ -15,6 +15,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,400,700');
 
 
 table, th, td {
@@ -25,7 +26,23 @@ th, td {
     padding: 5px;
     text-align: left;
 }
+body {
+    font-family: 'Roboto', sans-serif;
 
+}
+.total-hours {
+    font-size: 65pt;
+    font-weight: 100;
+    margin-bottom: 34px;
+}
+.right-day-log, .right-week-log{
+    padding-left:20px;
+    margin-top: 76px;
+    text-align: center 
+}
+.right-week-log {
+    margin-top: 80px;
+}
 
 .top-panel {
     background: #3F729B;
