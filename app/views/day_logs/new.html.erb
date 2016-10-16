@@ -1,5 +1,5 @@
 <div class="container">
-<h1>New Day Log</h1>
+
 
 <%= form_for(@day_log) do |f| %>
   <% if @day_log.errors.any? %>
@@ -16,10 +16,16 @@
 
   
  <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+  <div class="panel ">
+     <div class="panel-heading top-panel"><h4>New Day Log</h4></div>
+    <div class="well">
+
   <div class="field">
     <%= f.label :day %><br>
     <div class="row">
-        <div class='col-sm-6'>
+        <div class='col-sm-12'>
             <div class="form-group">
                 <div class='input-group date'  name="day" id='datetimepicker2'>
                     <input type='text' class="form-control" />
@@ -70,20 +76,24 @@
             $(function () {
                 $('#datetimepicker3').datetimepicker({
                     format: 'LT',
-                    pickDate: false
+                     pickDate: false,
+                    minuteStepping: 5
                 });
             });
         </script>
 
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Puch the clock", :class => "btn btn-day-log"  %>
   </div>
 <% end %>
 
 
-<%= link_to 'Back', day_logs_path %>
-
+&#160;<%= link_to 'Back', day_logs_path %>
+</div>
+</div>
+</div>
+</div>
 </div>
  </div>
         <script type="text/javascript">
@@ -93,27 +103,6 @@
 
                
                
-
-                $('#datetimepicker3').datetimepicker({
-                    format: 'LT'
-                });
-                $( "#dd" ).change(function() {
-                  alert( "The date is selected." );
-                });
-                $( "#tt" ).change(function() {
-                  alert( "The starttime is selected." );
-                });
-                $( "#time-out" ).change(function() {
-                  alert( "The end time is selected." );
-                });
-
-                 console.log('The date is');
-                 console.log($('#dd'));
-                 console.log('The start time is');
-                 console.log($('#dd'));
-                 console.log('The end time is');
-                 console.log($('#dd'));
-
 
             });
         </script>
