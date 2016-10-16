@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161015165452) do
+ActiveRecord::Schema.define(version: 20161016160333) do
 
   create_table "day_logs", force: :cascade do |t|
     t.string   "day"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(version: 20161015165452) do
     t.string   "time_out"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
   end
+
+  add_index "day_logs", ["user_id"], name: "index_day_logs_on_user_id"
 
   create_table "days", force: :cascade do |t|
     t.date     "date"

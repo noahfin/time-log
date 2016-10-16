@@ -22,9 +22,11 @@ class DayLogsController < ApplicationController
   end
 
 def create
-   binding.pry
+     if current_user 
      new_post = set_params(params[:day], params[:time_in], params[:time_out])
-    
+      else 
+       redirect_to root_url, :notice => "You need to login befor loging your hours worked"
+     end
   end
 
   def set_params(day, time_in, time_out)
@@ -32,11 +34,12 @@ def create
        day_log: {
         day: day,
         time_in:  time_in,
-        time_out: time_out
+        time_out: time_out,
+        user_id: current_user.id
 
       }
     })
-    permitted = params.require(:day_log).permit(:day, :time_in, :time_out)
+    permitted = params.require(:day_log).permit(:day, :time_in, :time_out, :user_id)
   
     respond_to do |format|
       if @day_log = DayLog.create!(permitted)    
