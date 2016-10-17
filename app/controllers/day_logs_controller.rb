@@ -1,4 +1,7 @@
+
 class DayLogsController < ApplicationController
+  require 'active_support/core_ext/string'
+  require 'date'
   before_action :set_day_log, only: [:show, :edit, :update, :destroy]
 
   # GET /day_logs
@@ -22,8 +25,29 @@ class DayLogsController < ApplicationController
   end
 
 def create
+   puts params
      if current_user 
-     new_post = set_params(params[:day], params[:time_in], params[:time_out])
+
+      @day_log = set_params(params[:day], params[:time_in], params[:time_out])
+      
+       week = week_exist? 
+     
+          params = ActionController::Parameters.new({
+            week: {
+            week_strat: get_sunday,
+            day_id:  @day_log.id,
+            user_id: current_user.id
+          }
+        }) 
+         permitted = params.require(:week).permit(:week_strat,  :day_id, :user_id)
+         if  @week = Week.create!(permitted) 
+          
+             render :show
+          else
+            format.html { render :new }
+            format.json { render json: @week.errors, status: :unprocessable_entity }
+          end
+
       else 
        redirect_to root_url, :notice => "You need to login befor loging your hours worked"
      end
@@ -36,20 +60,17 @@ def create
         time_in:  time_in,
         time_out: time_out,
         user_id: current_user.id
-
       }
     })
     permitted = params.require(:day_log).permit(:day, :time_in, :time_out, :user_id)
   
-    respond_to do |format|
-      if @day_log = DayLog.create!(permitted)    
 
-        format.html { redirect_to @day_log, notice: 'Day log was successfully created.' }
-        format.json { render :show, status: :created, location: @day_log }
+      if @day_log = DayLog.create!(permitted) 
+        @day_log
       else
         format.html { render :new }
         format.json { render json: @day_log.errors, status: :unprocessable_entity }
-      end
+
     end
   end
 
@@ -104,4 +125,33 @@ def create
     def day_log_params
       params.require(:day_log).permit(:day, :time_in, :time_out)
     end
+
+    def week_params
+      params.require(:week).permit(:start_day, :day_id, :user_id)
+    end
+
+    def week_exist? 
+   @week = search(get_sunday());
+
+
+      
+  
+end 
+
+  def search(search)
+ 
+     Week.where(['name LIKE ?', "%#{search}%"])
+
+
+
+end
+
+def  get_sunday 
+
+  date =  Date.today.beginning_of_week(:sunday)
+   # week = DateTime.parse(date).strftime("%A, %b %d")
+   new_dat = date.to_s
+ 
+end
+
 end

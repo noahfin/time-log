@@ -27,14 +27,13 @@
     <div class="row">
         <div class='col-sm-12'>
             <div class="form-group">
-                <div class='input-group date'  name="day" id='datetimepicker2'>
-                    <input type='text' class="form-control" />
+                <div class='input-group date' ng-model="day"   name="day" id='datetimepicker2'>
+                    <input type='text' class="form-control" id="dd" ng-model="day" onchange="myfunc()" name="day"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
             </div>
-        
         <script type="text/javascript">
             $(function () {
                 $('#datetimepicker2').datetimepicker({
@@ -50,7 +49,7 @@
  <div class="form-group">
             <label for="tt" class="sr-only">Start Timer</label>
             <div class="input-group" id="TimeDemo">
-                <input type="text" id="tt" name="time_in" placeholder="time" class="form-control" />
+                <input type="text" id="tt" name="time_in" placeholder="time" ng-model="user.time_in" class="form-control" />
                 <span class="input-group-btn">
                     <button class="btn btn-green" type="button"><i class="glyphicon glyphicon-time	Try it
 "></i></button>
@@ -64,7 +63,7 @@
         
             <div class="form-group">
                 <div class='input-group ' id='datetimepicker3'>
-                    <input type="text" id="tt" name="time_out" placeholder="time"  class="form-control" />
+                    <input type="text" id="t2" name="time_out" placeholder="time" ng-model="user.time_out" class="form-control" onchange="myFunction(this.value)"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-time"></span>
                     </span>
@@ -83,6 +82,7 @@
         </script>
 
   </div>
+  <button id="getData">  get data</button>
   <div class="actions">
     <%= f.submit "Puch the clock", :class => "btn btn-day-log"  %>
   </div>
@@ -112,4 +112,26 @@
 
 
  </div>
+
+<script type="text/javascript">
+
+ "use strict";
+ 
+
+    angular.module('myApp', [])
+      .controller('MyController', ['$scope', function ($scope) {
+        $scope.day = "10/20/2016";
+        $scope.myFunc = function( day) {
+         console.log($scope.day);
+    };
+      }]);
+
+    angular.element(function() {
+      angular.bootstrap(document, ['myApp']);
+    });
+  </script>
+
+ 
+
+    
 

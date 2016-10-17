@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016160333) do
+ActiveRecord::Schema.define(version: 20161017210355) do
 
   create_table "day_logs", force: :cascade do |t|
     t.string   "day"
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20161016160333) do
     t.integer  "day_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "week_strat"
+    t.integer  "user_id"
   end
 
 end

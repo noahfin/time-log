@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
   <title>TimeLog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -8,8 +8,9 @@
  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/images/ui-icons_444444_256x240.png"> 
 
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
-<body>
+<body  ng-controller="MyController">
 	 <!-- Second navbar for sign in -->
     <nav class="navbar navbar-default">
       <div class="container">
@@ -30,7 +31,7 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Home</a></li>
             <li><a href="#">New log</a></li>
-            <li><a href="#">Search</a></li>
+            <li><a href="#">Week</a></li>
             <li><a href="#">Tasks</a></li>
             <li><a href="#">Past work</a></li>
         
