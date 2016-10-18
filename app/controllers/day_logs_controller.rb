@@ -30,8 +30,16 @@ def create
 
       @day_log = set_params(params[:day], params[:time_in], params[:time_out])
       
-       week = week_exist? 
-     
+        if week_exist? 
+
+           week = week_exist? 
+           id = week.id
+           day_log = DayLog.find(@day_log.id)
+           @day_log2 = day_log.update_attribute(:week_id, id) 
+          
+        else 
+          week = get_sunday
+        end 
           params = ActionController::Parameters.new({
             week: {
             week_strat: get_sunday,
@@ -74,25 +82,6 @@ def create
     end
   end
 
-  # POST /day_logs
-  # POST /day_logs.json
-  # def create
-  #   binding.pry
-  #   @day_log = DayLog.new(day_log_params)
-
-  #   respond_to do |format|
-  #     if @day_log.save
-  #       format.html { redirect_to @day_log, notice: 'Day log was successfully created.' }
-  #       format.json { render :show, status: :created, location: @day_log }
-  #     else
-  #       format.html { render :new }
-  #       format.json { render json: @day_log.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
-
-  # PATCH/PUT /day_logs/1
-  # PATCH/PUT /day_logs/1.json
   def update
     respond_to do |format|
       if @day_log.update(day_log_params)
@@ -123,20 +112,15 @@ def create
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def day_log_params
-      params.require(:day_log).permit(:day, :time_in, :time_out)
+      params.require(:day_log).permit(:week_id)
     end
 
-    def week_params
-      params.require(:week).permit(:start_day, :day_id, :user_id)
-    end
+  
 
     def week_exist? 
-   @week = search(get_sunday());
+     week = Week.where("week_strat = ?", get_sunday()).first
 
-
-      
-  
-end 
+    end 
 
   def search(search)
  
