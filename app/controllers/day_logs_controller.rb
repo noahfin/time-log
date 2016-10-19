@@ -49,7 +49,7 @@ def create
         }) 
          permitted = params.require(:week).permit(:week_strat,  :day_id, :user_id)
          if  @week = Week.create!(permitted) 
-          
+             update_day_log(@week.id)
              render :show
           else
             format.html { render :new }
@@ -105,6 +105,11 @@ def create
   end
 
   private
+    def update_day_log(id)
+
+           day_log = DayLog.find(@day_log.id)
+           @day_log2 = day_log.update_attribute(:week_id, id) 
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_day_log
       @day_log = DayLog.find(params[:id])
