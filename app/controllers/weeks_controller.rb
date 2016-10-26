@@ -4,7 +4,7 @@ class WeeksController < ApplicationController
   # GET /weeks
   # GET /weeks.json
   def index
-    @weeks = Week.all
+    @weeks  = Week.includes(:day_logs)
   end
 
   # GET /weeks/1

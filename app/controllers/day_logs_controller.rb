@@ -31,7 +31,7 @@ def create
       @day_log = set_params(params[:day], params[:time_in], params[:time_out])
       
         if week_exist? 
-
+          binding.pry
            week = week_exist? 
            id = week.id
            day_log = DayLog.find(@day_log.id)
@@ -117,30 +117,22 @@ def create
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def day_log_params
-      params.require(:day_log).permit(:week_id)
+      params.require(:day_log).permit(:day, :time_in, :time_out).merge(user_id: current_user.id)
     end
 
   
 
     def week_exist? 
      week = Week.where("week_strat = ?", get_sunday()).first
-
+     
     end 
 
   def search(search)
- 
      Week.where(['name LIKE ?', "%#{search}%"])
+  end
 
-
-
-end
-
-def  get_sunday 
-
-  date =  Date.today.beginning_of_week(:sunday)
-   # week = DateTime.parse(date).strftime("%A, %b %d")
-   new_dat = date.to_s
- 
-end
-
+  def  get_sunday 
+    date =  Date.today.beginning_of_week(:sunday)
+    new_dat = date.to_ 
+  end
 end
