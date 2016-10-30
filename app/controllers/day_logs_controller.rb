@@ -133,6 +133,6 @@ def create
 
   def  get_sunday 
     date =  Date.today.beginning_of_week(:sunday)
-    new_dat = date.to_ 
+    new_dat = date.to_s 
   end
 end
