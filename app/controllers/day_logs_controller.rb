@@ -25,13 +25,11 @@ class DayLogsController < ApplicationController
   end
 
 def create
-   puts params
      if current_user 
 
       @day_log = set_params(params[:day], params[:time_in], params[:time_out])
       
         if week_exist? 
-          binding.pry
            week = week_exist? 
            id = week.id
            day_log = DayLog.find(@day_log.id)
@@ -71,7 +69,6 @@ def create
       }
     })
     permitted = params.require(:day_log).permit(:day, :time_in, :time_out, :user_id)
-  
 
       if @day_log = DayLog.create!(permitted) 
         @day_log
@@ -119,8 +116,6 @@ def create
     def day_log_params
       params.require(:day_log).permit(:day, :time_in, :time_out).merge(user_id: current_user.id)
     end
-
-  
 
     def week_exist? 
      week = Week.where("week_strat = ?", get_sunday()).first

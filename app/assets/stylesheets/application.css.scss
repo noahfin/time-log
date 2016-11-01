@@ -30,6 +30,16 @@ body {
     font-family: 'Roboto', sans-serif;
 
 }
+.inner-form {
+    width: 400px;
+    margin: auto;
+}
+.inner-form input[type="text"] {
+    width: 100%
+}
+.form-inputs {
+    margin: auto;
+}
 .total-hours {
     font-size: 65pt;
     font-weight: 100;
