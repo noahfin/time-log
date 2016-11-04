@@ -20,6 +20,18 @@ class WeeksController < ApplicationController
   # GET /weeks/1/edit
   def edit
   end
+  def current 
+    @day_logs = []
+    @week = search(get_sunday)
+     @week.each_with_index do |week, i|
+      begin
+        my_record = DayLog.find week.day_id
+      rescue ActiveRecord::RecordNotFound => e
+        my_record = nil
+      end
+      @day_logs[i] = my_record
+    end 
+  end
 
   # POST /weeks
   # POST /weeks.json

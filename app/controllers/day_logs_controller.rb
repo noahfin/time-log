@@ -24,6 +24,7 @@ class DayLogsController < ApplicationController
   def edit
   end
 
+
 def create
      if current_user 
 
