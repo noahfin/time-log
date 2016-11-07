@@ -3,7 +3,7 @@
 <div class="container"> 
 
 
-<h1> Work Logged For  <%= @week[0].week_strat%></h1>
+<h1> Work Logged For  <%= @week[0].week_strat if @week[0]%></h1>
 
 <table style="table-layout:fixed">
   <thead>
@@ -30,7 +30,11 @@
     <% end %>
   </tbody>
 </table>
-
+<%=form_tag(controller: "weeks",action: "week", method: "post") do %> 
+	  <%= label_tag(:find_week, "Search for week:") %>
+  	<%= text_field_tag(:find_week) %>
+  	<%= submit_tag("Search") %>
+  	<%end %>
 <br>
 <%= link_to 'New Day log', new_day_log_path %>
 </div>
